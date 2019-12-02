@@ -3,8 +3,8 @@ package dataaccess
 import (
 	"database/sql"
 	"fmt"
-	"github.com/dreyau/bareos_exporter/types"
-	_ "github.com/go-sql-driver/mysql" // Keep driver import and usage (in GetConnection) in one file
+	"./types" // "github.com/dreyau/bareos_exporter/types"
+	_ "github.com/lib/pq" // Keep driver import and usage (in GetConnection) in one file
 	"time"
 )
 
@@ -17,7 +17,7 @@ func GetConnection(connectionString string) (*connection, error) {
 	var connection connection
 	var err error
 
-	connection.DB, err = sql.Open("mysql", connectionString)
+	connection.DB, err = sql.Open("psql", connectionString) // mysql
 
 	return &connection, err
 }
